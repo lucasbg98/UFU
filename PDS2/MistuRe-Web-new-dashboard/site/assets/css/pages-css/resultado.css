@@ -1,0 +1,175 @@
+
+.subSelecionada {
+  height: 60px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 17px 0 10px;
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: 2px;
+  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.subSelecionada + .subSelecionada {
+  margin-top: 10px;
+}
+
+.subSelecionada .subIndex {
+  width: 45px !important;
+  height: 40px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  background-color: #1B5E20;
+  color: white;
+}
+
+.subContent {
+  width: 100%;
+  padding: 0 20px 0 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.subContent span:not(:first-child) {
+  color: grey;
+}
+
+.inputHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
+.resultadosWrapper {
+  display: flex;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin: 16px 0;
+  padding: 4px 0;
+  border: 1px solid rgba(0,0,0,.125);
+}
+
+#resultadosAppend .resultado {
+  width: 100%;
+  height: 200px;
+  padding: 5px;
+}
+
+.resultadoContainer {
+  padding: 10px;
+  height: 100%;
+  width: 100%;
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: 4px;
+}
+
+
+.resultadoContainer .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+}
+
+.resultadoContainer .header .cultura {
+  font-size: 1.25rem;
+}
+
+.resultadoContainer .header .cultura i {
+  color: #1B5E20;
+}
+
+.resultadoPositivo {
+  color: #1B5E20;
+  border: 1px solid #1B5E20;
+  padding: 1px 3px;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.resultadoNegativo {
+  color: red;
+  border: 1px solid red;
+  padding: 1px 3px;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.resultadoPendente, .resultadoRejeitado {
+  color: #333;
+  border: 1px solid #333;
+  padding: 1px 3px;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.resultadoContainer .body {
+  margin-top: 10px;
+}
+
+.tableHeader {
+  display: flex;
+  justify-content: space-between;
+  
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.tableBody {
+  max-height: 100px;
+  overflow: auto;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+.tableBody .sub {
+  display: flex;
+  justify-content: space-between;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background-color: black;
+}
+
+@media (max-width: 2560px) {
+  #resultadosAppend .resultado {
+    width: calc(100% / 6);
+  }
+}
+
+@media (max-width: 1920px) {
+  #resultadosAppend .resultado {
+    width: 20%;
+  }
+}
+
+@media (max-width: 1440px) {
+  #resultadosAppend .resultado {
+    width:25%;
+  }
+}
+
+@media (max-width: 1024px) {
+  #resultadosAppend .resultado {
+    width:calc(100% / 3);
+  }
+}
+
+@media (max-width: 768px) {
+  #resultadosAppend .resultado {
+    width:50%;
+  }
+}
+
+@media (max-width: 550px) {
+  #resultadosAppend .resultado {
+    width:100%;
+  }
+}

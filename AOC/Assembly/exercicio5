@@ -1,0 +1,153 @@
+.data
+    str1: .asciiz "1 - Somar\n2 - Multiplicar\n3 - Subtrair\n4 Elevar X por Y\n"
+    str2: .asciiz "digite x:"
+    str3: .asciiz "digite y:"
+    str4: .asciiz "o resultado é: "
+ 
+.text
+    la $a0, str1
+    li $v0, 4
+    syscall
+   
+    li $v0,5     #pega o inteiro pra ver qual a equação            
+    syscall
+   
+    move $t0, $v0
+    #ve qual a equação o usuario deseja fazer
+    beq $t0, 1, Somar        
+    beq $t0, 2, Mult
+    beq $t0, 3, Subt
+    beq $t0, 4, Elevar
+   
+    Somar:
+        la $a0, str2
+        li $v0, 4
+        syscall
+   
+        li $v0,5         #le x
+        syscall
+       
+        move $t1, $v0       #coloca x que estava em v0 em t1
+       
+        la $a0, str3
+        li $v0, 4      
+        syscall
+   
+        li $v0,5            #le y  
+        syscall
+       
+        move $t2, $v0       #coloca y que estava em v0 em t2
+       
+        add $t1, $t1, $t2   #faz a adiçao de t1 + t2
+       
+        move $a0, $t1       #move o resultado para a0
+       
+        li $v0, 1       #imprime o resultado
+        syscall
+       
+        li $v0, 10
+        syscall
+       
+    Mult:
+        la $a0, str2
+        li $v0, 4
+        syscall
+   
+        li $v0,5         #le x
+        syscall
+       
+        move $t1, $v0       #coloca x que estava em v0 em t1
+       
+        la $a0, str3
+        li $v0, 4      
+        syscall
+   
+        li $v0,5            #le y  
+        syscall
+       
+        move $t2, $v0       #coloca y que estava em v0 em t2
+       
+        mul $t1, $t1, $t2   #faz a multiplicaçao de t1 * t2
+       
+        la $a0, str4
+        li $v0, 4
+        syscall
+       
+        move $a0, $t1       #move o resultado para a0
+       
+        li $v0, 1       #imprime o resultado
+        syscall
+       
+        li $v0, 10
+        syscall
+ 
+    Subt:
+        la $a0, str2
+        li $v0, 4
+        syscall
+   
+        li $v0,5         #le x
+        syscall
+       
+        move $t1, $v0       #coloca x que estava em v0 em t1
+       
+        la $a0, str3
+        li $v0, 4      
+        syscall
+   
+        li $v0,5            #le y  
+        syscall
+       
+        move $t2, $v0       #coloca y que estava em v0 em t2
+       
+        sub $t1, $t1, $t2   #faz a subtraçao de t1 - t2
+   
+        la $a0, str4
+        li $v0, 4
+        syscall    
+   
+        move $a0, $t1       #move o resultado para a0
+       
+        li $v0, 1       #imprime o resultado
+        syscall
+       
+        li $v0, 10
+        syscall
+   
+    Elevar:
+        la $a0, str2
+        li $v0, 4
+        syscall
+   
+        li $v0,5         #le x
+        syscall
+       
+        move $t1, $v0       #coloca x que estava em v0 em t1
+       
+        la $a0, str3
+        li $v0, 4      
+        syscall
+   
+        li $v0,5            #le y  
+        syscall
+       
+        move $t2, $v0       #coloca y que estava em v0 em t2
+       
+        move $t3, $t1     #copia o valor de t1 para t3
+        Loop:
+            beq $t2, 1, Exit    #verifica se t2==1 se for vai para exit
+            mul $t3, $t3, $t1   #multiplica t3 por t1
+            subi $t2, $t2, 1    #decrementa o t2
+            j Loop
+        Exit:
+            la $a0, str4
+            li $v0, 4
+            syscall
+ 
+            move $a0, $t3   #coloca o valor de t3 em a0
+           
+            li $v0, 1   #printa a elevação
+            syscall
+           
+            li $v0, 10
+            syscall

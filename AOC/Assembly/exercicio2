@@ -1,0 +1,88 @@
+	.data
+	str1: .asciiz "digite um numero: "
+	str2: .asciiz "o numero maior eh: "
+	str3: .asciiz "o numero lido eh maior que 15."
+
+.text
+	la $a0, str1  	#poe o endereço do str1 no a0
+	li $v0, 4     	#imprime a str1
+	syscall
+	
+	li $v0, 5    	#le um inteiro e armazena em v0
+	syscall
+	
+	move $t0, $v0  	#armazena em t0 o valor de  v0
+	
+	li $v0, 4
+	syscall
+	
+	li $v0, 5
+	syscall
+	
+	move $t1, $v0  	#armazena em t1 o valor de v0
+
+	li $v0, 4
+	syscall
+	
+	li $v0, 5
+	syscall
+	
+	move $t2, $v0 	#armazena em t2 o valor de v0
+	
+	slt $t3, $t0, $t1 	#ve se t0 < t1
+	bne $t3, $zero, Else    #ve t0 < t1 vai para else
+	
+	slt $t3, $t0, $t2	#ve t0 < t2
+	bne $t3, $zero, Else2   #ve se t0 < t2 vai para else2
+	
+	slti $t3, $t0, 16 	#ve se t0 < 15
+	beq $t3, $zero Else3	#ve se t0 < 15 vai para else3
+	
+        la $a0, str2    	#coloca o endereço de str2 em a0
+        li $v0, 4               #printa a str2 na tela	        
+	syscall 
+	
+	move $a0, $t0          	#move t0 para a0 para printar
+        li $v0, 1               #printa o t0
+	syscall
+	
+  	li $v0, 10
+  	syscall	
+	
+	Else: 	slt $t3, $t1, $t2 	#ve se t1 < t2
+		bne $t3, $zero, Else2   #se t1 < t2 vai para else2
+		
+		slti $t3, $t1, 16	#ve se t1 < 15
+		beq $t3, $zero Else3	#ve se t1 < 15 vai para else3
+	        
+	        la $a0, str2    	#coloca o endereço de str2 em a0
+	        li $v0, 4               #printa a str2 na tela
+	        syscall
+	        
+	        move $a0, $t1          	#move t1 para a0 para printar
+	        li $v0, 1               #imprime t1
+	        syscall
+	        
+  		li $v0, 10
+  		syscall
+  		
+	Else2:	slti $t3, $t2, 16 	#ve se t2 < 16
+		beq $t3, $zero Else3	#ve se t2 < 16 vai para else3
+		
+	        la $a0, str2    	#coloca o endereço de str2 em a0
+	        li $v0, 4               #printa a str2 na tela
+	        syscall
+	        
+	        move $a0, $t2          	#move t2 para a0 para printar
+	        li $v0, 1               #printa o t2
+  	        syscall
+  	        
+  		li $v0, 10
+  		syscall
+  	        
+  	Else3:  la $a0, str3
+  		li $v0, 4
+  		syscall
+  		
+  		li $v0, 10
+  		syscall

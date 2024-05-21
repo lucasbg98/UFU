@@ -1,0 +1,60 @@
+.data
+	vet: .word 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99
+	espaco: .asciiz " | "
+	texto: .asciiz " Insira um valor: "
+	quebra: .asciiz "\n"
+	
+.text	
+	la $a1, vet		#a1 recebe o endereço inicial de vet
+	li $t0, 1		#t0 recebe 1
+	li $t1, 0		#t1 recebe 0
+	
+	#leitura da string texto
+	la $a0, texto		
+      	li $v0, 4
+      	syscall
+      	
+      	#leitura de um inteiro
+	li $v0, 5
+	syscall
+	
+	add $t0, $t0, $v0	#atribui o valor lido contigo em v0 para t0
+	
+	#leitura da string quebra
+	la $a0, quebra		
+      	li $v0, 4
+      	syscall
+	
+	Ler:
+		
+		
+		beq $t1, $t0, Print		#ve se contador = t0
+		addi $t1, $t1, 1		#incrementa contador
+		addi $a1, $a1, 4		#muda a posição do vetor
+		
+      		j Ler				#pula para o label Ler
+      		
+      	Print:
+      		beq $t1, 100, Exit		#ve se contador é = 100
+      		addi $t1, $t1, 1		#incrementa contador
+      		
+      		#printa o vetor na posição a1
+      		lw $a0, 0($a1)			
+      		li $v0, 1
+      		syscall
+      		
+      		#leitura da string espaco
+      		la $a0, espaco
+      		li $v0, 4
+      		syscall
+      		
+      		addi $a1, $a1, 4		#muda a posição do vetor
+      			
+      		j Print				#pula para o label Print
+      		
+      	Exit:	
+      		#comando para finalizar o programa
+      		li $v0, 10
+		syscall
+	
+	

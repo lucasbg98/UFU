@@ -1,0 +1,39 @@
+body{
+
+	margin:0%;
+	padding:0%;
+	
+	background-image: url("../imgprodutos/teste2.jpg");
+	
+	
+	
+}
+
+
+
+
+h2{
+
+	margin-top:5%;
+	margin-bottom:3%;
+	margin-left:10%;
+	color:White;
+
+}
+
+td{
+	font-size: 20px;
+	color:white;
+}
+
+tr:hover{
+
+	background-color:grey;
+
+}
+
+span{
+
+	color:red;
+
+}

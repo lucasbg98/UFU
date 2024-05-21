@@ -1,0 +1,14 @@
+outro ator - Sistema.
+
+separar o controlar o personagem para o modo de combate.
+
+o sistema deve atualizar as areas de acordo com o nivel do jogador.
+
+acesso a lojas - O jogador deve ser capaz de acessar um menu de loja através de NPCs .
+
+geração de inimigos - O sistema deve gerar inimigos em certas áreas do mapa se baseando na proximidade do jogador aquela área.
+
+morte de personagem - O sistema deve retornar o jogador ao ultimo ponto de salvamento em caso de morte do personagem.
+
+separar o manipular itens - pra alterar equipamento de personagem e manipulação de itens consumiveis.
+

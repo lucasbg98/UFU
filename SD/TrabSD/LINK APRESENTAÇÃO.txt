@@ -1,0 +1,7 @@
+------- Trabalho de Sistemas Distribuidos - TicTacToe -------
+
+Lucas Bragança Gonçalves.
+
+Link do video de apresentação - https://www.youtube.com/watch?v=5Pz4feciF-Y
+
+OBS: Se o video estiver em qualidade baixa (360p) é por conta do youtube ainda estar renderizando o video para HD, ai no caso é só esperar um tempo que ele deve terminar de renderizar o video totalmente para o HD (1080p)

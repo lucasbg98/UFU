@@ -1,0 +1,204 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema 3145258_appherbicida
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema 3145258_appherbicida
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `3145258_appherbicida` DEFAULT CHARACTER SET utf8 ;
+USE `3145258_appherbicida` ;
+
+-- -----------------------------------------------------
+-- Table `3145258_appherbicida`.`perfil`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `3145258_appherbicida`.`perfil` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `descricao` VARCHAR(45) NOT NULL,
+  `permissao` VARCHAR(10) NOT NULL COMMENT '0: Avaliar Misturas\n1: \n2: \n3: \n4: \n5: \n6: \n7: \n8: \n9: ',
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `3145258_appherbicida`.`usuario`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `3145258_appherbicida`.`usuario` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `email` VARCHAR(100) NOT NULL,
+  `senha` VARCHAR(256) NOT NULL,
+  `nome` VARCHAR(100) NOT NULL,
+  `perfil_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_usuario_perfil1_idx` (`perfil_id` ASC)  ,
+  CONSTRAINT `fk_usuario_perfil1`
+    FOREIGN KEY (`perfil_id`)
+    REFERENCES `3145258_appherbicida`.`perfil` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `3145258_appherbicida`.`classe`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `3145258_appherbicida`.`classe` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `descricao` VARCHAR(100) NOT NULL,
+  `cor` VARCHAR(10) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `3145258_appherbicida`.`substancia`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `3145258_appherbicida`.`substancia` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `principio_ativo` VARCHAR(100) NOT NULL,
+  `classe_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_substancia_categoria_substancia1_idx` (`classe_id` ASC)  ,
+  CONSTRAINT `fk_substancia_categoria_substancia1`
+    FOREIGN KEY (`classe_id`)
+    REFERENCES `3145258_appherbicida`.`classe` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `3145258_appherbicida`.`mistura`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `3145258_appherbicida`.`mistura` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `efeito` TINYINT(4) NULL COMMENT '0 - Neutro\n1 - Positivo\n2 - Negativo\n...',
+  `comentario` VARCHAR(300) NULL,
+  `data_avaliacao` DATETIME NULL,
+  `data_cadastro` DATETIME NOT NULL,
+  `avaliador_id` INT NULL,
+  `pesquisador_id` INT NOT NULL,
+  `status` TINYINT(4) NOT NULL DEFAULT 0 COMMENT '0 - Pendente.\n1 - Aprovado.\n2 - Rejeitado.\n...',
+  PRIMARY KEY (`id`),
+  INDEX `fk_Mistura_Usuario2_idx` (`avaliador_id` ASC)  ,
+  INDEX `fk_Mistura_Usuario1_idx` (`pesquisador_id` ASC)  ,
+  CONSTRAINT `fk_Mistura_Usuario2`
+    FOREIGN KEY (`avaliador_id`)
+    REFERENCES `3145258_appherbicida`.`usuario` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Mistura_Usuario1`
+    FOREIGN KEY (`pesquisador_id`)
+    REFERENCES `3145258_appherbicida`.`usuario` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `3145258_appherbicida`.`cultura`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `3145258_appherbicida`.`cultura` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `descricao` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `3145258_appherbicida`.`referencia`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `3145258_appherbicida`.`referencia` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `titulo` VARCHAR(100) NOT NULL,
+  `link` VARCHAR(300) NOT NULL,
+  `pais` VARCHAR(45) NOT NULL,
+  `resultado` TINYINT(4) NOT NULL COMMENT '0 - Inconclusivo\n1 - Positivo\n2 - Negativo\n',
+  `comentario` VARCHAR(300) NULL,
+  `doi` VARCHAR(100) NULL,
+  `mistura_id` INT NOT NULL,
+  `cultura_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_Referencia_Mistura1_idx` (`mistura_id` ASC)  ,
+  INDEX `fk_referencia_cultura1_idx` (`cultura_id` ASC)  ,
+  CONSTRAINT `fk_Referencia_Mistura1`
+    FOREIGN KEY (`mistura_id`)
+    REFERENCES `3145258_appherbicida`.`mistura` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_referencia_cultura1`
+    FOREIGN KEY (`cultura_id`)
+    REFERENCES `3145258_appherbicida`.`cultura` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `3145258_appherbicida`.`mistura_substancia`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `3145258_appherbicida`.`mistura_substancia` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `dosagem` DECIMAL(7,2) NULL,
+  `unidade_dosagem` VARCHAR(30) NULL,
+  `substancia_id` INT NOT NULL,
+  `mistura_id` INT NOT NULL,
+  INDEX `fk_Mistura_has_Substancia_Substancia1_idx` (`substancia_id` ASC)  ,
+  INDEX `fk_Mistura_has_Substancia_Mistura1_idx` (`mistura_id` ASC)  ,
+  PRIMARY KEY (`id`),
+  CONSTRAINT `fk_Mistura_has_Substancia_Mistura1`
+    FOREIGN KEY (`mistura_id`)
+    REFERENCES `3145258_appherbicida`.`mistura` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Mistura_has_Substancia_Substancia1`
+    FOREIGN KEY (`substancia_id`)
+    REFERENCES `3145258_appherbicida`.`substancia` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `3145258_appherbicida`.`apelido`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `3145258_appherbicida`.`apelido` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `descricao` VARCHAR(100) NOT NULL,
+  `substancia_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_Apelido_Substancia1_idx` (`substancia_id` ASC)  ,
+  CONSTRAINT `fk_Apelido_Substancia1`
+    FOREIGN KEY (`substancia_id`)
+    REFERENCES `3145258_appherbicida`.`substancia` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `3145258_appherbicida`.`nome_comercial`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `3145258_appherbicida`.`nome_comercial` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `descricao` VARCHAR(100) NOT NULL,
+  `substancia_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_nome_comercial_substancia1_idx` (`substancia_id` ASC)  ,
+  UNIQUE INDEX `descricao_UNIQUE` (`descricao` ASC)  ,
+  CONSTRAINT `fk_nome_comercial_substancia1`
+    FOREIGN KEY (`substancia_id`)
+    REFERENCES `3145258_appherbicida`.`substancia` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

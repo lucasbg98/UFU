@@ -1,0 +1,32 @@
+
+.navbarcolor{
+  
+    background-color: #3379b7 !important;
+    font: white;
+    
+   
+}
+.navbar-inverse .navbar-nav>li>a {
+    color: white;
+}
+
+.navbar-inverse .navbar-brand {
+    color: white;
+}
+.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover {
+    color: #fff;
+    background-color: #89898d;
+}
+.panel-primary>.panel-heading {
+    color: #fff;
+    background-color: #3379b7;
+    border-color: #041652;
+}
+.modal-header {
+
+    background: #3379b7;
+}
+.form-horizontal .form-group {
+    margin-right: 15px;
+    margin-left: 15px;
+}

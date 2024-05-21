@@ -1,0 +1,76 @@
+<html>
+<head>
+	<title> Login </title>
+	<link rel="stylesheet" type="text/css" href="Trab.css">
+	<script type="text/javascript" src="Script.js"></script>
+
+	<script>
+      	
+      	function validar()
+      	{
+  			var login = document.forms["Form"]["login"].value;
+  			var senha = document.forms["Form"]["senha"].value;
+
+  			if(login == "admin")
+  				if(senha == "admin"){
+  					alert("Bem vindo Administrador!")
+  					window.location.href = "adm/admin.html";
+  					return false;
+  				}
+
+		    var fileToLoad = document.getElementById("fileToLoad").files[0];
+		    var fileReader = new FileReader();
+		    fileReader.onload = function(fileLoadedEvent) 
+		    {
+				var textFromFileLoaded = fileLoadedEvent.target.result;
+	    	  	var texto = textFromFileLoaded;
+	    	  	if(texto.search(login) == -1){
+	    	  		alert("Usuario-senha incorretos");
+	    	  		return false;
+	    	  	}
+	    	  	if(texto.search(senha) == -1){
+    	  			alert("Usuario-senha incorretos");
+	    	  		return false;
+	    	  	}
+
+	    	  	if(texto.search("usuario") != -1){
+	    	  		alert("Login efetuado com sucesso!")
+	    	  		window.location.href= "HomeL.html";
+	    	  		return true;
+	    	  	}
+	    	  	else
+	    	  		alert("Arquivo invalido");
+	    	  		return false;
+
+		   };
+
+		   fileReader.readAsText(fileToLoad, "UTF-8");
+	  	}
+		
+      </script>
+</head>
+<body id= "body1">
+	<div class = "box">
+
+		<div class = "label">
+			<href = "Cadastro.html" > <div class = "cadastro">Cadastre-se </div>
+			<br>
+			<br>
+			<br>
+		</div>
+		<div class = "form">
+
+		<form name = "Form">
+			<input type="text" name="login" placeholder="Usuário" class = "textl1">
+			<br>
+			<br>
+			<br>
+			<input type="text" name="senha" placeholder="Senha" class = "textl1">
+			<br>
+			<br><br>
+			<input type="file" id="fileToLoad" class = "textl1">
+			<br>
+			<br>
+			<br>
+			<input type="button" id="sbmt" value="ENTRAR" onclick="validar()">
+</body>

@@ -1,0 +1,96 @@
+
+body{
+
+
+	background-color:#caccd1;
+	background-image:url("../imgprodutos/carrinho.jpg");
+
+}
+
+.tabela td{
+
+	color:white;	
+
+}
+.tabela{
+
+
+	margin-top:6%;
+	margin-left:15%;	
+
+}
+
+.tabela table{
+	box-shadow:0px 0px 0px black;
+	border-collapse: collapse;
+	width:80%;
+	
+}
+
+
+tr:hover{
+
+	background-color:grey;
+
+}
+
+thead {
+  background: #cccc;
+
+}
+
+.sair a{
+
+	float:right;
+	margin-top:-9%;
+	margin-right:2%;
+	color:red;
+	text-decoration:none;
+
+}
+
+
+
+
+.botao{
+
+	border:0;
+	background-color:black;
+	color:white;
+	width:10%;
+	height:6%;
+	float:right;
+	margin-top:10%;
+	margin-right:18%;
+
+
+
+}
+
+span{
+	color:red;
+
+}
+
+h2{
+
+	color:white;
+
+}
+
+#msgdiv{
+
+	
+	margin-left:10%;
+
+}
+
+
+#total{
+
+	
+	margin-left:2%;
+	
+}
+
+

@@ -1,0 +1,69 @@
+.data
+	str1: .asciiz "digite x: "
+	str2: .asciiz "digite y: "
+	str3: .asciiz "digite z: "
+	str4: .asciiz "o resultado é: "
+	str5: .asciiz "\ndeseja realizar um novo calculo se sim digite 1, se nao digite 0:"
+	
+.text
+Loop:
+	la $a0, str1		#coloca em a0 o endereço de str1
+	li $v0, 4		#printa str1
+	syscall
+	
+	li $v0, 5		#lê um inteiro
+	syscall
+	
+	move $t0, $v0		#move o inteiro lido pra t0
+	
+	la $a0, str2		#coloca em a0 o endereço de str2
+	li $v0, 4		#printa str2
+	syscall
+	
+	li $v0, 5		#lê um inteiro
+	syscall
+	
+	move $t1, $v0		#move o inteiro lido para t1
+
+	la $a0, str3
+	li $v0, 4
+	syscall
+	
+	li $v0, 5
+	syscall
+	
+	move $t2, $v0		#move o inteiro lido para t2
+	
+	mul $t3, $t0, $t0	#multiplica x*x e armazena em t3
+	mul $t3, $t3, $t0	#multiplica (x*x)*x
+	mul $t3, $t3, 3         #multiplica 3*x^3
+	
+	mul $t4, $t1, $t1    	#multiplica y*y e armazena em t4
+	mul $t4, $t4, 4		#multiplica 4*y^2
+	
+	mul $t2, $t2, 10 	#multiplica 10*z e armazena em t2
+
+	sub $t3, $t3, $t4       #subtrai 3x^3-4y^2 e armazena em t3
+	add $t3, $t3, $t2       #soma (3x^3-4y^2) + 10z e armazena em t3
+	subi $t3, $t3, 2	#subtrai a equaçao -2 e armazena em t3
+	
+	la $a0, str4		#coloca em a0 o endereço de str4
+	li $v0, 4
+	syscall
+	
+	move $a0, $t3		#move t3 para a0 para printar
+	li $v0, 1		#printa o inteiro
+	syscall
+	
+	la $a0, str5
+	li $v0, 4
+	syscall
+	
+	li $v0, 5
+	syscall
+	
+	move $t5, $v0		# move o valor lido para t5
+	beq $t5, 1, Loop	#se t5 for 1 vai para loop
+	
+	li $v0, 10
+	syscall

@@ -1,0 +1,73 @@
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title> Cadastro </title>
+		<link rel="stylesheet" type="text/css" href="Cadastro.css">
+
+		<script type="text/javascript" src="Cadastro.js"></script>
+		<script src="jquery-3.3.1.min.js"></script>
+      	<script src="jquery.mask.js"></script>
+
+		<script>
+			$(document).ready(function(){
+			  $("#cpf").mask("999.999.999-99");
+			});
+		  </script>
+
+	</head>
+	<body>
+		<div class = "table2">
+			<div class = "formC">
+
+				<form name  = "Form2">
+					<input type="text" id= "Login" name = "login" placeholder="Nome Completo" class = "textl1" onblur="valNome(); ">
+					<br>
+					<br>
+					<br>
+					<input type="password" name="senha" id="Senha" placeholder="Senha" class = "textl1" onblur = "valSenha();" >
+					<br>
+					<br>
+					<br>
+					<input type="password" name="senha2" id="senha2" placeholder="Confirme a Senha" class = "textl1" onblur = "verifSenha();">
+					<br>
+					<br>
+					<br>
+					<input type = "text" name = "email" id="Email" placeholder="E-mail" class = "textl1" onblur = "valEmail();">
+					<br>
+					<br>
+					<br>
+					<input type="text" id = "cpf" name="CPF" placeholder="CPF" class = "textl1" onblur="valCpf();">
+					<br>
+					<br>
+					<br>
+					<input type="text" name="CEP" id="cep" placeholder="CEP" class = "textl1" onblur = "valCEP();">
+					<br>
+					<br>
+					<br>
+					<input type="text" placeholder="Nome do Arquivo" id="inputFileNameToSaveAs" class = "textl1" required >
+					<br>
+					<br>
+					<br>
+					<button id ="sbmt" onclick="saveTextAsFile()"> Cadastrar </button>
+				</form>
+            	</div>
+			</div>
+			<div class = "table3">
+					<div class ="formC">
+					<input type="file" id="fileToLoad" class = "textl1" placeholder="ARQUIVO">
+					<br>
+					<br>
+					<br>
+            		<input type="button" id ="sbmt" value="CARREGAR" onclick="loadFileAsText()">
+            		<ol name="lista" id="lista1"></ol>
+            		<br>
+            		<input type="text" placeholder="Nome do Arquivo" id="nomearquivo" class ="textl1" required>
+            		<br>
+            		<br>
+            		<br>
+      				<input type="button" id = "sbmt"		 value="SALVAR" onclick="salvar()">
+            		</div>
+
+		</div>
+		</body>
+</html>

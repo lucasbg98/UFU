@@ -1,0 +1,378 @@
+[
+  {
+    "id": 1,
+    "descricao": "Abacate"
+  },
+  {
+    "id": 2,
+    "descricao": "Abacaxi"
+  },
+  {
+    "id": 3,
+    "descricao": "Abóbora"
+  },
+  {
+    "id": 4,
+    "descricao": "Abobrinha"
+  },
+  {
+    "id": 5,
+    "descricao": "Alecrim"
+  },
+  {
+    "id": 6,
+    "descricao": "Alface"
+  },
+  {
+    "id": 7,
+    "descricao": "Alfafa"
+  },
+  {
+    "id": 8,
+    "descricao": "Algodão"
+  },
+  {
+    "id": 9,
+    "descricao": "Alho"
+  },
+  {
+    "id": 10,
+    "descricao": "Amendoim"
+  },
+  {
+    "id": 11,
+    "descricao": "Araucária"
+  },
+  {
+    "id": 12,
+    "descricao": "Arroz"
+  },
+  {
+    "id": 13,
+    "descricao": "Arroz_resistente a quizalofop"
+  },
+  {
+    "id": 14,
+    "descricao": "Aveia"
+  },
+  {
+    "id": 15,
+    "descricao": "Azeitona"
+  },
+  {
+    "id": 16,
+    "descricao": "Azevém"
+  },
+  {
+    "id": 17,
+    "descricao": "Batada-salsa"
+  },
+  {
+    "id": 18,
+    "descricao": "Batata"
+  },
+  {
+    "id": 19,
+    "descricao": "Batata-doce"
+  },
+  {
+    "id": 20,
+    "descricao": "Beterraba"
+  },
+  {
+    "id": 21,
+    "descricao": "Brachiaria brizantha"
+  },
+  {
+    "id": 22,
+    "descricao": "Brachiaria brizantha_MG-5"
+  },
+  {
+    "id": 23,
+    "descricao": "Brachiaria humidicola"
+  },
+  {
+    "id": 24,
+    "descricao": "Brachiaria ruziziensis"
+  },
+  {
+    "id": 25,
+    "descricao": "Brócolis"
+  },
+  {
+    "id": 26,
+    "descricao": "Café"
+  },
+  {
+    "id": 27,
+    "descricao": "Cana-de-açúcar"
+  },
+  {
+    "id": 28,
+    "descricao": "Canola"
+  },
+  {
+    "id": 29,
+    "descricao": "Capim-colonião"
+  },
+  {
+    "id": 30,
+    "descricao": "Capim-mombaça"
+  },
+  {
+    "id": 31,
+    "descricao": "Cebola"
+  },
+  {
+    "id": 32,
+    "descricao": "Cenoura"
+  },
+  {
+    "id": 33,
+    "descricao": "Centeio"
+  },
+  {
+    "id": 34,
+    "descricao": "Couve"
+  },
+  {
+    "id": 35,
+    "descricao": "Couve-chinesa"
+  },
+  {
+    "id": 36,
+    "descricao": "Couve-flor"
+  },
+  {
+    "id": 37,
+    "descricao": "Crisântemo"
+  },
+  {
+    "id": 38,
+    "descricao": "Crotalaria juncea"
+  },
+  {
+    "id": 39,
+    "descricao": "Crotalaria spectabilis"
+  },
+  {
+    "id": 40,
+    "descricao": "Erva-mate"
+  },
+  {
+    "id": 41,
+    "descricao": "Ervilha"
+  },
+  {
+    "id": 42,
+    "descricao": "Eucalipto"
+  },
+  {
+    "id": 43,
+    "descricao": "Feijão-caupi"
+  },
+  {
+    "id": 44,
+    "descricao": "Feijão-guandu"
+  },
+  {
+    "id": 45,
+    "descricao": "Feijão-mungo-verde"
+  },
+  {
+    "id": 46,
+    "descricao": "Feijoeiro-comum"
+  },
+  {
+    "id": 47,
+    "descricao": "Fumo"
+  },
+  {
+    "id": 48,
+    "descricao": "Girassol"
+  },
+  {
+    "id": 49,
+    "descricao": "Gladíolo"
+  },
+  {
+    "id": 50,
+    "descricao": "Goiaba"
+  },
+  {
+    "id": 51,
+    "descricao": "Jabuticaba"
+  },
+  {
+    "id": 52,
+    "descricao": "Jaca"
+  },
+  {
+    "id": 53,
+    "descricao": "Jango"
+  },
+  {
+    "id": 54,
+    "descricao": "Laranja"
+  },
+  {
+    "id": 55,
+    "descricao": "Limão"
+  },
+  {
+    "id": 56,
+    "descricao": "Mamão"
+  },
+  {
+    "id": 57,
+    "descricao": "Mandioca"
+  },
+  {
+    "id": 58,
+    "descricao": "Manga"
+  },
+  {
+    "id": 59,
+    "descricao": "Maracujá"
+  },
+  {
+    "id": 60,
+    "descricao": "Melancia"
+  },
+  {
+    "id": 61,
+    "descricao": "Melão"
+  },
+  {
+    "id": 62,
+    "descricao": "Milheto"
+  },
+  {
+    "id": 63,
+    "descricao": "Milho"
+  },
+  {
+    "id": 64,
+    "descricao": "Milho_2B-710"
+  },
+  {
+    "id": 65,
+    "descricao": "Milho_30F35"
+  },
+  {
+    "id": 66,
+    "descricao": "Milho_30K75"
+  },
+  {
+    "id": 67,
+    "descricao": "Milho_30P70"
+  },
+  {
+    "id": 68,
+    "descricao": "Milho_doce"
+  },
+  {
+    "id": 69,
+    "descricao": "Milho_P30F80"
+  },
+  {
+    "id": 70,
+    "descricao": "Milho_pipoca"
+  },
+  {
+    "id": 71,
+    "descricao": "Milho_Syn Supremo VIP12"
+  },
+  {
+    "id": 72,
+    "descricao": "Morango"
+  },
+  {
+    "id": 73,
+    "descricao": "Mostarda"
+  },
+  {
+    "id": 74,
+    "descricao": "Nabo"
+  },
+  {
+    "id": 75,
+    "descricao": "ND"
+  },
+  {
+    "id": 76,
+    "descricao": "Orégano"
+  },
+  {
+    "id": 77,
+    "descricao": "Pimenta"
+  },
+  {
+    "id": 78,
+    "descricao": "Pimenta-do-reino"
+  },
+  {
+    "id": 79,
+    "descricao": "Pimentão"
+  },
+  {
+    "id": 80,
+    "descricao": "Pinhão-manso"
+  },
+  {
+    "id": 81,
+    "descricao": "Quiabo"
+  },
+  {
+    "id": 82,
+    "descricao": "Rabanete"
+  },
+  {
+    "id": 83,
+    "descricao": "Repolho"
+  },
+  {
+    "id": 84,
+    "descricao": "Roseira"
+  },
+  {
+    "id": 85,
+    "descricao": "Rúcula"
+  },
+  {
+    "id": 86,
+    "descricao": "Soja"
+  },
+  {
+    "id": 87,
+    "descricao": "Soja_STS"
+  },
+  {
+    "id": 88,
+    "descricao": "Sorgo"
+  },
+  {
+    "id": 89,
+    "descricao": "Teca"
+  },
+  {
+    "id": 90,
+    "descricao": "Tifton"
+  },
+  {
+    "id": 91,
+    "descricao": "Tomate"
+  },
+  {
+    "id": 92,
+    "descricao": "Trigo"
+  },
+  {
+    "id": 93,
+    "descricao": "Triticale"
+  },
+  {
+    "id": 94,
+    "descricao": "Uva"
+  }
+]

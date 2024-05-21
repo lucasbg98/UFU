@@ -1,0 +1,233 @@
+
+body{
+
+
+	margin:0;
+	margin-left:0;
+	padding:0;
+	background:white;
+	font-family:"sans-serif";
+	
+	
+}
+
+.style-in {
+
+	
+	background-color:black;
+	padding-bottom:1%;
+	margin-left:-8px;
+	margin-right:-8px;
+	margin-top:-1%;
+}
+
+
+.relatorio{
+	
+	color:black;
+	float:right;
+	font-size:80%;
+	margin-top:4.3%;
+	margin-right:5%;
+	width:1%;
+	text-decoration:none;
+	display:inline-block;	
+	   
+}
+
+.relatorio:hover{
+	border-bottom-width: medium;
+	border-bottom:1px solid red;
+}
+
+.centro a.login{
+
+	color:white;
+	font-family:"";
+	text-decoration:none;
+	font-size: .725rem;
+	text-transform: uppercase;    	
+
+}
+.sair{
+	float:right;
+	margin-right:-4%;
+	color:red;
+	
+
+}
+
+
+.img{
+
+	text-decoration:none;
+}
+
+
+.centro{
+
+	text-align:center;	
+	padding-top:2%;
+	
+}
+
+
+.menu_opcoes ul li{
+
+	width:150px;
+	float:left;
+	
+	
+
+}
+
+
+
+.menu_opcoes a{
+
+	padding:15px;
+	color:black;
+	text-decoration:none;
+	display:inline-block;
+	
+}
+
+.menu_opcoes ul ul{
+
+	visibility:hidden;
+
+}
+
+.menu_opcoes ul li:hover ul{
+
+	visibility:visible;
+		
+
+}
+
+.menu_opcoes ul ul li{
+
+	padding:5px;
+
+	
+}
+
+.menu_opcoes ul{
+	
+	list-style:none;
+	margin-left:5%;
+}
+
+.menu_opcoes li:hover{
+
+	border-bottom:2px solid red;
+	color:red;
+
+}
+
+
+.minha_conta{
+
+	font-size:80%;
+	margin-left:33%;
+	width:10%;
+	float:left;
+	margin-top:-3.8%;
+	text-decoration:none;
+	color:black;
+	display:inline-block;	
+}
+
+
+
+.carrinho{
+
+	
+	font-size:80%;
+	margin-left:34%;
+	text-decoration:none;
+	color:black;	
+	display:inline-block;
+}
+
+.produto1 p{
+	
+	margin-left:5%;
+	color:black;
+	text-decoration: underline;
+
+}
+
+.produto1 h3{
+	
+	margin-left:5%;
+	color:black;
+	
+	
+
+}
+
+
+.minha_conta:hover{
+
+	border-bottom:1px solid red;
+}
+
+.carrinho:hover{
+
+	border-bottom:1px solid red;
+	
+}
+
+.produto1 a{
+
+	margin-top:5%;
+	float:left;
+	margin-left:-40%;
+	
+	
+
+}
+
+.produto1 a:hover{
+
+	border-bottom:1px solid red;
+	border-top:1px solid red;
+
+}
+
+.produto2 img{
+
+	margin-bottom:15%;
+	
+}
+
+.produto2 a{
+
+	margin-top:6%;
+	float:left;
+	color:black;
+	
+		
+}
+
+.produto2  h3{
+	
+	margin-top:-5%;
+	color:black;
+	
+	
+}
+
+.produto2 a:hover{
+
+	border-bottom:1px solid red;
+	border-top:1px solid red;
+	
+
+}
+
+
+
+	
+

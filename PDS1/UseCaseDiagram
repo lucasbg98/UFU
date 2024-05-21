@@ -1,0 +1,14 @@
+morte personagem extend modo de combate
+
+ligar jogador ao salvar progresso tambem
+
+corta ligação morte d epersonagem
+
+geração de inimigos ainda ligado ao sistema porém include ao modo de combate
+
+ligar personagem ao casos de uso em que estao iniciar sistema atualmente
+
+morte de personagem extend carregar campanha e iniciar sistema
+
+salvar progresso é include de iniciar campanha e carregar campanha.
+

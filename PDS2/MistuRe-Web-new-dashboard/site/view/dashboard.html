@@ -1,0 +1,491 @@
+<html>
+  <head>
+    <title>Painel</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+      charset="UTF-8"
+    />
+
+    <link rel="icon" href="../assets/img/misture-icon.png" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/style.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../assets/css/pages-css/dashboard.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://getbootstrap.com/docs/5.3/assets/css/docs.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+    />
+
+    <script type="text/javascript" src="../assets/js/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script
+      type="text/javascript"
+      src="../assets/js/jquery.mask.min.js"
+    ></script>
+    <script type="text/javascript" src="../assets/js/fontawesome.js"></script>
+    <script type="text/javascript" src="../assets/js/bootstrap.min.js"></script>
+    <script
+      src="https://kit.fontawesome.com/38eec7dec7.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="../assets/js/pages-scripts/dashboard.js"></script>
+    <script type="text/javascript" src="../assets/js/moment.js"></script>
+
+    <script>
+      $.get(
+        "../controller/UsuarioController.php?getUserId=1",
+        function (data, status) {
+          if (!data) {
+            //Não existe usuário logado
+            location.href = "../view/login.html?noUser=1";
+          }
+        }
+      );
+    </script>
+  </head>
+
+  <body>
+    <div
+      id="customDialog"
+      class="flex justify-content-center items-center"
+    ></div>
+
+    <!-- Topbar -->
+    <div class="topbar justify-space-between">
+      <div class="flex">
+        <div class="cursor-pointer" id="open-menu">
+          <i class="fas fa-bars" style="font-size: 21px"></i>
+        </div>
+        <span id="user-name" style="margin-left: 8px"> </span>
+      </div>
+    </div>
+
+    <!-- Menu -->
+    <div class="menu">
+      <div
+        class="d-flex"
+        style="
+          flex-direction: column;
+          justify-content: space-between;
+          flex: 1 1 auto;
+        "
+      >
+        <div id="menuAppend" class="left-side">
+          <div class="menu-item">
+            <a class="link" href="./substancia.html">
+              <img src="../assets/img/substance.svg" />
+              Substância
+            </a>
+          </div>
+          <div class="menu-item">
+            <a class="link" href="./resultado.html">
+              <img src="../assets/img/ref.svg" />
+              Resultado
+            </a>
+          </div>
+        </div>
+        <div class="menu-item" style="margin-right: 10px">
+          <a class="link" href="../controller/UsuarioController.php?deslogar=1">
+            <img src="../assets/img/logout.svg" />
+            Sair
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Conteúdo -->
+    <div class="container-fluid containerSize justify-center">
+      <div class="row w-100">
+        <div class="col-12 mb-16">
+          <div class="pd-16 card shaddow-right page-toggler">
+            <div class="row">
+              <div class="col-12">
+                <h5>
+                  Painel <br />
+                  <small class="text-muted small"
+                    >Selecione o conteúdo que deseja visualizar</small
+                  >
+                </h5>
+              </div>
+
+              <div class="w-100">
+                <div class="form-check form-check-inline">
+                  <input
+                    checked
+                    type="radio"
+                    id="app-option"
+                    name="page-toggler"
+                    value="app-page-content"
+                    class="form-check-input"
+                  />
+                  <label class="form-check-label" for="app-option"
+                    >Aplicativo</label
+                  >
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    type="radio"
+                    id="subs-option"
+                    name="page-toggler"
+                    class="form-check-input"
+                    value="subs-page-content"
+                  />
+                  <label class="form-check-label" for="subs-option"
+                    >Substâncias</label
+                  >
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    type="radio"
+                    id="culture-option"
+                    name="page-toggler"
+                    class="form-check-input"
+                    value="cultures-page-content"
+                  />
+                  <label class="form-check-label" for="culture-option"
+                    >Culturas</label
+                  >
+                </div>
+                <!-- <div class="form-check form-check-inline">
+                  <input
+                    type="radio"
+                    name="page-toggler"
+                    id="classes-option"
+                    value="classes-option"
+                    class="form-check-input"
+                  />
+                  <label class="form-check-label" for="classes-option"
+                    >Classes</label
+                  >
+                </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="app-page-content" class="col-12 page-content-option">
+          <!-- Filtro -->
+          <div class="d-flex pd-16 mb-16 card shaddow-right filter-wrapper">
+            <h5>
+              Estatísticas de uso dos usuários <br />
+              <small class="text-muted"
+                >Dados referentes às informações buscadas no período</small
+              >
+            </h5>
+            <div class="row filter-wrapper">
+              <div class="col-xs-12 col-xl-3 input-wrapper">
+                <label for="date-start">Início</label>
+                <input
+                  type="date"
+                  name="start"
+                  id="start-date"
+                  class="customInput"
+                />
+              </div>
+              <div class="col-xs-12 col-xl-3 input-wrapper input-wrapper">
+                <label for="date-end">Fim</label>
+                <input
+                  type="date"
+                  name="end"
+                  id="end-date"
+                  class="customInput"
+                />
+              </div>
+              <div class="col-xs-12 col-xl-3 search-button-wrapper">
+                <button id="filter" class="greenButton">Pesquisar</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="row mt-16 mb-16 card-wrapper">
+            <div class="col-xs-12 col-xl-6">
+              <div class="card shaddow-right pd-16 card-content">
+                <div class="titles">
+                  <h5>
+                    Misturas mais procuradas <br />
+                    <small class="text-muted"
+                      >Misturas mais pesquisadas pelos usuários</small
+                    >
+                  </h5>
+                  <button
+                    type="button"
+                    class="whiteButton showTableVision"
+                    title="Visualizar em tabela"
+                  >
+                    <i class="fas fa-table" style="font-size: 18px"></i>
+                  </button>
+                  <button
+                    type="button"
+                    class="whiteButton showChartVision d-none"
+                    title="Visualizar em gráfico"
+                  >
+                    <i class="fas fa-chart-pie" style="font-size: 18px"></i>
+                  </button>
+                </div>
+                <div class="chart-content">
+                  <canvas id="mixtureLogsChart"></canvas>
+                </div>
+                <div id="mixtureLogsTable" class="table-content mt-16 d-none">
+                  <table class="table table-bordered table-hover">
+                    <thead>
+                      <tr>
+                        <th class="mixLength" scope="col">Mistura</th>
+                        <th scope="col">Quantidade</th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-xl-6">
+              <div class="card shaddow-right pd-16 card-content">
+                <div class="titles">
+                  <h5>
+                    Misturas buscadas sem resultado <br />
+                    <small class="text-muted"
+                      >Misturas buscadas que não possuem resultados aprovados
+                    </small>
+                  </h5>
+                  <button
+                    type="button"
+                    class="whiteButton showTableVision"
+                    title="Visualizar em tabela"
+                  >
+                    <i class="fas fa-table" style="font-size: 18px"></i>
+                  </button>
+                  <button
+                    type="button"
+                    class="whiteButton showChartVision d-none"
+                    title="Visualizar em gráfico"
+                  >
+                    <i class="fas fa-chart-pie" style="font-size: 18px"></i>
+                  </button>
+                </div>
+                <div class="chart-content">
+                  <canvas id="mixtureWithEmptyResultsChart"></canvas>
+                </div>
+                <div
+                  id="mixtureWithEmptyResultsTable"
+                  class="table-content mt-16 d-none"
+                >
+                  <table class="table table-bordered table-hover">
+                    <thead>
+                      <tr>
+                        <th class="mixLength" scope="col">Mistura</th>
+                        <th scope="col">Quantidade</th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card -->
+          <div class="row mt-16 card-wrapper"></div>
+        </div>
+
+        <div id="subs-page-content" class="col-12 d-none page-content-option">
+          <!-- Filtro -->
+          <div class="d-flex pd-16 card shaddow-right filter-wrapper mb-16">
+            <h5>
+              Substâncias utilizadas nas misturas <br />
+              <small class="text-muted"
+                >Estatísticas de uso das substâncias para compor misturas</small
+              >
+            </h5>
+            <div class="row filter-wrapper">
+              <div class="col-xs-12 col-xl-3 input-wrapper input-wrapper">
+                <label for="origin">Status das misturas</label>
+                <select type="date" name="end" id="orderBy" class="customInput">
+                  <option value="1">Aprovada</option>
+                  <option value="-1">Rejeitada</option>
+                  <option value="0">Pendente</option>
+                  <option value="">Todas</option>
+                </select>
+              </div>
+              <div class="col-xs-12 col-xl-3 input-wrapper input-wrapper">
+                <label for="origin">Ordenar por</label>
+                <select type="date" name="end" id="orderBy" class="customInput">
+                  <option value="qtd">Quantidade</option>
+                  <option value="s.principio_ativo">
+                    Princípio Ativo (Descrição)
+                  </option>
+                </select>
+              </div>
+              <div class="col-xs-12 col-xl-3 input-wrapper input-wrapper">
+                <label for="origin">De forma</label>
+                <select type="date" name="end" id="orderBy" class="customInput">
+                  <option value="desc">Decrescente</option>
+                  <option value="asc">Crescente</option>
+                </select>
+              </div>
+
+              <div class="col-xs-12 col-xl-3 search-button-wrapper">
+                <button id="filter" class="greenButton">Pesquisar</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card -->
+          <div class="row mt-16 mb-16 card-wrapper">
+            <div class="col-xs-12 col-xl-6">
+              <div class="card shaddow-right pd-16 card-content">
+                <div class="titles">
+                  <h5>
+                    Substâncias mais usadas <br />
+                    <small class="text-muted"
+                      >Princípios ativos mais usados nas misturas</small
+                    >
+                  </h5>
+                  <button
+                    type="button"
+                    class="whiteButton showTableVision"
+                    title="Visualizar em tabela"
+                  >
+                    <i class="fas fa-table" style="font-size: 18px"></i>
+                  </button>
+                  <button
+                    type="button"
+                    class="whiteButton showChartVision d-none"
+                    title="Visualizar em gráfico"
+                  >
+                    <i class="fas fa-chart-pie" style="font-size: 18px"></i>
+                  </button>
+                </div>
+                <div class="chart-content">
+                  <canvas id="substancesOccurencesChart"></canvas>
+                </div>
+                <div
+                  id="substancesOccurencesTable"
+                  class="table-content mt-16 d-none"
+                >
+                  <table class="table table-bordered table-hover">
+                    <thead>
+                      <tr>
+                        <th class="mixLength" scope="col">Princípio Ativo</th>
+                        <th scope="col">Quantidade</th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          id="cultures-page-content"
+          class="col-12 d-none page-content-option"
+        >
+          <!-- Filtro -->
+          <div class="d-flex pd-16 card shaddow-right filter-wrapper mb-16">
+            <h5>
+              Estatísticas de uso dos usuários <br />
+              <small class="text-muted"
+                >Dados referentes às informações buscadas no período</small
+              >
+            </h5>
+            <div class="row filter-wrapper">
+              <div class="col-xs-12 col-xl-3 input-wrapper input-wrapper">
+                <label for="origin">Status das misturas</label>
+                <select type="date" name="end" id="orderBy" class="customInput">
+                  <option value="1">Aprovada</option>
+                  <option value="-1">Rejeitada</option>
+                  <option value="0">Pendente</option>
+                  <option value="">Todas</option>
+                </select>
+              </div>
+              <div class="col-xs-12 col-xl-3 input-wrapper input-wrapper">
+                <label for="origin">Ordenar por</label>
+                <select type="date" name="end" id="orderBy" class="customInput">
+                  <option value="qtd">Quantidade</option>
+                  <option value="s.principio_ativo">Descrição</option>
+                </select>
+              </div>
+              <div class="col-xs-12 col-xl-3 input-wrapper input-wrapper">
+                <label for="origin">De forma</label>
+                <select type="date" name="end" id="orderBy" class="customInput">
+                  <option value="desc">Decrescente</option>
+                  <option value="asc">Crescente</option>
+                </select>
+              </div>
+
+              <div class="col-xs-12 col-xl-3 search-button-wrapper">
+                <button id="filter" class="greenButton">Pesquisar</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card -->
+          <div class="row mt-16 mb-16 card-wrapper">
+            <div class="col-xs-12 col-xl-6">
+              <div class="card shaddow-right pd-16 card-content">
+                <div class="titles">
+                  <h5>
+                    Culturas com mais resultados <br />
+                    <small class="text-muted"
+                      >Culturas mais utilizadas na base
+                    </small>
+                  </h5>
+                  <button
+                    type="button"
+                    class="whiteButton showTableVision"
+                    title="Visualizar em tabela"
+                  >
+                    <i class="fas fa-table" style="font-size: 18px"></i>
+                  </button>
+                  <button
+                    type="button"
+                    class="whiteButton showChartVision d-none"
+                    title="Visualizar em gráfico"
+                  >
+                    <i class="fas fa-chart-pie" style="font-size: 18px"></i>
+                  </button>
+                </div>
+                <div class="chart-content">
+                  <canvas id="culturesOccurencesChart"></canvas>
+                </div>
+                <div
+                  id="culturesOccurencesTable"
+                  class="table-content mt-16 d-none"
+                >
+                  <table class="table table-bordered table-hover">
+                    <thead>
+                      <tr>
+                        <th class="mixLength" scope="col">Mistura</th>
+                        <th scope="col">Quantidade</th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

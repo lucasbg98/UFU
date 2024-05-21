@@ -1,0 +1,481 @@
+<html>
+  <head>
+    <title>Cadastro de Nova Referência</title>
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+      charset="UTF-8"
+    />
+
+    <link rel="icon" href="../assets/img/misture-icon.png" />
+    <link rel="stylesheet" type="text/css" href="../assets/css/style.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../assets/css/pages-css/resultado.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../assets/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script type="text/javascript" src="../assets/js/jquery.min.js"></script>
+    <script
+      type="text/javascript"
+      src="../assets/js/jquery.mask.min.js"
+    ></script>
+    <script type="text/javascript" src="../assets/js/fontawesome.js"></script>
+    <script type="text/javascript" src="../assets/js/bootstrap.min.js"></script>
+    <script
+      type="text/javascript"
+      src="../assets/js/pages-scripts/resultado.js"
+    ></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript" src="../assets/js/moment.js"></script>
+    <script
+      type="text/javascript"
+      src="https://kit.fontawesome.com/38eec7dec7.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      $.get(
+        "../controller/UsuarioController.php?getUserId=1",
+        function (data, status) {
+          if (!data) {
+            //Não existe usuário logado
+            location.href = "../view/login.html?noUser=1";
+          }
+        }
+      );
+    </script>
+  </head>
+
+  <body>
+    <div
+      id="customDialog"
+      class="flex justify-content-center items-center"
+    ></div>
+
+    <!-- Formulário -->
+    <div class="sidebarCommon">
+      <div class="sidebarHeader">
+        <div class="closeSidebar">
+          <img src="../assets/img/close-icon.svg" />
+        </div>
+        <p class="sidebarTitle">Cadastrar Novo Resultado</p>
+      </div>
+      <div class="sidebarContent flex-grow-1">
+        <form id="resultado-form" class="formClass">
+          <input type="hidden" id="h-r-id" />
+          <input type="hidden" id="h-ref-id" />
+          <fieldset>
+            <legend class="customLegend">Referência</legend>
+            <div class="w-100">
+              <div id="header-link" class="flex justify-space-between">
+                <label for="link">Link</label>
+              </div>
+              <input
+                type="text"
+                id="link"
+                class="customInput"
+                placeholder="Url de acesso ao artigo científico"
+              />
+            </div>
+            <div class="w-100 mt-8">
+              <div id="header-titulo" class="flex justify-space-between">
+                <label for="titulo">Título</label>
+              </div>
+              <input
+                type="text"
+                id="titulo"
+                class="customInput"
+                placeholder="Título do artigo científico"
+              />
+            </div>
+            <div class="w-50 mt-8">
+              <div id="header-pais" class="flex justify-space-between">
+                <label for="pais">País</label>
+              </div>
+              <input
+                id="pais"
+                type="text"
+                class="customInput"
+                placeholder="Ex.: Brasil, Índia, ..."
+              />
+            </div>
+          </fieldset>
+          <fieldset id="fieldsetMistura" class="mt-16">
+            <legend class="customLegend">Mistura</legend>
+            <!-- <input id="selected-sub" type="hidden"> -->
+            <div class="flex w-100">
+              <div class="mr-8 w-100">
+                <div id="header-produto" class="flex justify-space-between">
+                  <label for="filter-autocomplete">Produto</label>
+                </div>
+                <input
+                  type="search"
+                  id="produto"
+                  class="customInput autocomplete"
+                  placeholder="Ex.: Glyphosate, Baris, ..."
+                />
+              </div>
+              <div class="d-flex items-end justify-end">
+                <button
+                  type="button"
+                  id="add-produto"
+                  class="greenButton"
+                  style="width: 50px; height: 35px"
+                >
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
+            </div>
+            <div id="dosagem-div" class="d-none w-100 mt-8">
+              <div class="w-50 pr-8">
+                <label id="sub-dos-label" class="capitalize" for="subs-dos">
+                  Dose da Substância
+                </label>
+                <input
+                  type="text"
+                  id="sub-dos"
+                  class="dosagem-mask customInput"
+                  placeholder="Dose da substância"
+                />
+              </div>
+              <div id="comercial-div" class="d-none w-50 ml-8">
+                <label id="nc-dos-label" class="capitalize" for="nc-dos">
+                  Dose do Comercial
+                </label>
+                <input
+                  type="text"
+                  id="nc-dos"
+                  class="dosagem-mask customInput"
+                  placeholder="Dose do comercial"
+                />
+              </div>
+            </div>
+          </fieldset>
+          <fieldset id="subs-selecionadas" class="mt-16 d-none">
+            <legend id="subsLegend" class="customLegend">
+              Substâncias Selecionadas
+            </legend>
+            <div id="append-substancias" class="flex flex-column"></div>
+          </fieldset>
+          <fieldset class="mt-16">
+            <legend class="customLegend">Resultado</legend>
+            <div class="flex w-100">
+              <div class="w-50 pr-8">
+                <div id="header-cultura" class="flex justify-space-between">
+                  <label for="cultura">Cultura</label>
+                </div>
+                <select id="cultura" class="customSelect">
+                  <option value="" disabled selected>Selecionar</option>
+                </select>
+              </div>
+              <div class="w-50 ml-8">
+                <div id="header-resultado" class="flex justify-space-between">
+                  <label for="resultado">Efeito Resultante</label>
+                </div>
+                <select id="resultado" name="resultado" class="customSelect">
+                  <option value="" disabled selected>Selecionar</option>
+                  <option value="1">Positivo</option>
+                  <option value="-1">Negativo</option>
+                </select>
+              </div>
+            </div>
+            <div id="users-div" class="d-none w-100 mt-8">
+              <div class="w-50 pr-8">
+                <div id="header-pesquisador" class="flex justify-space-between">
+                  <label for="cultura">Pesquisador</label>
+                </div>
+                <select id="pesquisador" class="customSelect">
+                  <option value="" disabled selected>Selecionar</option>
+                </select>
+              </div>
+              <div id="avaliador-div" class="w-50 ml-8 d-none">
+                <div id="header-avaliador" class="flex justify-space-between">
+                  <label for="resultado">Avaliador</label>
+                </div>
+                <select id="avaliador" class="customSelect">
+                  <option value="" disabled selected>Selecionar</option>
+                </select>
+              </div>
+            </div>
+            <div class="w-100 flex flex-column mt-8">
+              <div id="header-comentario" class="flex justify-space-between">
+                <label for="comentario">Observações/Comentários</label>
+              </div>
+              <textarea id="comentario" class="w-100" rows="4"></textarea>
+            </div>
+          </fieldset>
+          <div
+            id="buttons-wrapper"
+            class="flex justify-end items-end flex-grow-1"
+          >
+            <button
+              type="button"
+              id="limparForm"
+              class="whiteButton buttonPadding"
+            >
+              Limpar
+            </button>
+            <button
+              type="submit"
+              id="resultadoSubmit"
+              class="greenButton buttonPadding"
+            >
+              Cadastrar
+            </button>
+            <button
+              type="button"
+              id="excluirResultado"
+              class="blackButton buttonPadding"
+            >
+              Excluir
+            </button>
+            <button
+              type="button"
+              id="pendenteResultado"
+              class="yellowButton buttonPadding"
+            >
+              Pendente
+            </button>
+            <button
+              type="button"
+              id="cancelarEdicao"
+              class="redButton buttonPadding"
+            >
+              Cancelar
+            </button>
+            <button
+              type="button"
+              id="editarResultado"
+              class="whiteButton buttonPadding"
+            >
+              Editar
+            </button>
+            <button
+              type="button"
+              id="avaliarRejeitar"
+              class="redButton buttonPadding"
+            >
+              Rejeitar
+            </button>
+            <button
+              type="button"
+              id="avaliarAprovar"
+              class="greenButton buttonPadding"
+            >
+              Aprovar
+            </button>
+
+            <button
+              type="button"
+              id="salvarEdicao"
+              class="greenButton buttonPadding"
+            >
+              Salvar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Topbar -->
+    <div class="topbar justify-space-between">
+      <div class="flex">
+        <div class="cursor-pointer" id="open-menu">
+          <i class="fas fa-bars" style="font-size: 21px"></i>
+        </div>
+        <span id="user-name" style="margin-left: 8px"> </span>
+      </div>
+      <!-- <div>
+            <img class="logoImg" src="../assets/img/refmixagri-logo.png"/>
+        </div> -->
+    </div>
+
+    <!-- Menu -->
+    <div class="menu">
+      <div
+        class="d-flex"
+        style="
+          flex-direction: column;
+          justify-content: space-between;
+          flex: 1 1 auto;
+        "
+      >
+        <div id="menuAppend" class="left-side">
+          <div class="menu-item">
+            <a class="link" href="./substancia.html">
+              <img src="../assets/img/substance.svg" />
+              Substância
+            </a>
+          </div>
+          <div class="menu-item menu-item-active">
+            <a class="link" href="./resultado.html">
+              <img src="../assets/img/ref.svg" />
+              Resultado
+            </a>
+          </div>
+        </div>
+        <div class="menu-item" style="margin-right: 10px">
+          <a class="link" href="../controller/UsuarioController.php?deslogar=1">
+            <img src="../assets/img/logout.svg" />
+            Sair
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Conteúdo -->
+    <div class="container-fluid justify-center containerSize">
+      <div id="content-div" class="content">
+        <!-- Cabeçalho e Botão de Abrir o Modal -->
+        <div
+          class="w-100 d-flex justify-space-between"
+          style="margin-bottom: 7px"
+        >
+          <h2 style="display: inline-block">Resultados</h2>
+
+          <button
+            type="button"
+            id="open_modal_resultado"
+            class="greenButton buttonPadding"
+          >
+            <i
+              class="fas fa-plus"
+              style="margin: 3px 7px 0 -7px; font-size: 18px"
+            ></i>
+            RESULTADO
+          </button>
+        </div>
+
+        <!-- Filtros  -->
+        <div class="resultado-filter row m-0 pd-8 shaddow-right">
+          <div class="col-12 col-md-6 col-xl-8 subs-filter">
+            <div class="row h-100">
+              <div
+                class="col-12 col-xl-6 pd-8 br--light-gray d-flex flex-column items-center"
+              >
+                <div class="filter-add-subs-div w-100">
+                  <h5>Filtrar Substâncias</h5>
+                  <div class="w-100">
+                    <input
+                      id="filter-autocomplete"
+                      type="text"
+                      class="w-100"
+                      placeholder="Ex.: Glyphosate, Baris, ..."
+                      style="padding-left: 5px"
+                    />
+                  </div>
+                  <div class="d-flex justify-end">
+                    <div
+                      id="filter-message"
+                      class="w-100 flex justify-center items-center"
+                    ></div>
+                    <button
+                      id="filter-add-substance"
+                      class="greenButton buttonPadding"
+                    >
+                      Adicionar
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="col-12 col-xl-6 d-flex flex-column justify-center items-center pd-0"
+              >
+                <div
+                  id="filter-subs-div"
+                  class="w-100 h-100 flex justify-center flex-column d-none"
+                >
+                  <!-- <div class="pd-8" style="padding: 0 8px;">
+                                    <h6 id="filter-selected-subs-title">Substâncias Selecionadas: </h6>
+                                </div> -->
+                  <div
+                    class="filter-append-subs o-auto"
+                    style="padding: 0 8px 8px"
+                  >
+                    <!-- Append feito pelo Js -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 col-xl-4 pd-8 referencia-filter">
+            <div class="row filter-div">
+              <div class="col-12 col-xl-6 d-flex flex-column">
+                <label>Pesquisador</label>
+                <select id="filter-pesquisador" class="h-30px">
+                  <option value="" selected>Todos</option>
+                </select>
+              </div>
+              <div class="col-12 col-xl-6 d-flex flex-column">
+                <label>Avaliador</label>
+                <select id="filter-avaliador" class="h-30px">
+                  <option value="" selected>Todos</option>
+                </select>
+              </div>
+            </div>
+            <div class="row filter-div">
+              <div class="col-12 col-xl-6 d-flex flex-column">
+                <label>Status</label>
+                <select id="filter-status" class="h-30px">
+                  <option value="" selected>Todos</option>
+                  <option value="1">Aprovado</option>
+                  <option value="0">Pendente</option>
+                  <option value="-1">Rejeitado</option>
+                </select>
+              </div>
+              <div class="col-12 col-xl-6 d-flex flex-column">
+                <label>Link</label>
+                <input
+                  id="filter-link"
+                  type="text"
+                  placeholder="Url do artigo"
+                />
+              </div>
+            </div>
+            <div class="row filter-div">
+              <div class="col-12 d-flex items-end justify-end">
+                <span
+                  id="filter-limpar"
+                  class="d-none cursor-pointer span-limpar"
+                  title="Limpar Filtros"
+                  >Limpar</span
+                >
+                <button
+                  id="filter-button"
+                  class="greenButton"
+                  alt="Pesquisar Referências"
+                >
+                  Pesquisar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="filter-qtd-div" class="d-none" style="margin-top: 18px">
+          <span id="filter-qtd" class="fz-20">Teste</span>
+        </div>
+
+        <!-- Carregamento de resultados -->
+        <div
+          id="resultadosAppend"
+          class="resultadosWrapper shaddow-right d-none"
+        ></div>
+      </div>
+    </div>
+  </body>
+</html>

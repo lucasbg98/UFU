@@ -1,0 +1,19 @@
+1.1 - Será impresso os numeros 20 e 10 consecutivamente, pois no codigo acima p1 recebe o endereço de memória de 'i', e p2 o de 'j', apos isso ele executa
+ bubblesort jogando o valor contido no endereço de memoria de 'i', ou seja 10, para uma variável chamada temp, depois joga o valor contido no endereço de
+ memória de 'j' (20) dentro do endereço de memoria do 'i', e novamente jogou o valor de temp, que era 10 para o endereço de memoria de 'j', resumindo, ele
+ inverteu os valores das duas variaveis.
+
+1.2 - O programa acima recebe um ponteiro de string e manda para uma outra função char, que faz outro ponteiro receber a string que foi mandada porém a partir
+ da posição 'i' em diante, depois retorna esse novo ponteiro para a função main e printa ele.
+
+2 - Letra E, pois pti recebe o endereço de memória da variavel i, e não o valor contido nesse endereço, no caso *pti = 10.
+
+3 - Letra D, pois pti[0] = 10 e pti[1] = 7.
+
+4 - Letra A, pois a variavel pf recebe o valor do endereço de memória da variavel f, ou seja, quando escaneamos pf é o mesmo que um scan de &f.
+
+7 - a) O erro esta em p = x, quando na verdade a variavel p deve receber o endereço de memória de x, no caso &x, pois quando imprimir o ponteiro *p ele vai buscar o valor contido no endereço de memória de x.
+
+    b) a variavel temp está como ponteiro, no caso *temp, porém para o bubblesort de ponteiros, a variavel temp precisa ser uma variavel normal, sem ser ponteiro.
+    
+    c) a comparação de string está sendo feita por meio de um if, o que é errado, comparações entre strings precisam ser feitas através do comando strcmp.

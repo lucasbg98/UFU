@@ -1,0 +1,120 @@
+body{
+
+	margin:0;
+	padding:0;
+	font-family:"sans-serif";
+}
+
+
+.caixa_interna{
+
+	width:400px;
+	height:390px;
+	margin-top:5%;
+	margin-left:10%;
+	padding-left:50%;
+	border-top:5px solid red;
+	box-shadow:0px 1px 2px black;
+
+}
+
+.clientes_registrados{
+	
+	margin-left:-10%;
+	margin-top:-10%;
+	margin-bottom:10%;
+
+
+}
+
+.cadastre-se {
+
+	
+	margin-top:14%;
+	margin-left:-100%;
+
+}
+
+
+input{
+
+	width:90%;
+	height:10%;
+	margin-left:-10%;
+}
+
+
+#cadastrar{
+	
+	font-size:17px;
+	color:white;
+	background-color:red;
+	border:none;
+	padding-top:5px;
+	padding-left:10px;
+	padding-right:10px;
+	height:35px;
+	width:26%;	
+	margin-left:-50%;
+	margin-top:10%;
+	float:left;
+	text-decoration:none;
+	
+}
+
+#cadastrar:hover{
+
+
+	background-color:#ff323d;
+
+}	
+
+
+#entrar{
+	font-size:17px;
+	color:white;
+	background-color:red;
+	border:none;
+	height:40px;
+	width:25%;
+	float:right;
+	margin-right:10%;
+	margin-top:0%;
+}
+
+#entrar:hover{
+
+	background-color:#ff323d;
+
+}
+
+label{
+
+	color:red;
+	font-size:12px;
+	float:right;
+	margin-right:10%;
+}
+
+#titulo{
+
+	margin-left:10%;
+	margin-top:5%;
+
+}
+
+#msgdivnome{
+
+	color:red;
+	font-size:12px;
+
+
+}
+
+#msgdivsenha{
+
+	color:red;
+	font-size:12px;
+
+
+}

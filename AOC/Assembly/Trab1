@@ -1,0 +1,66 @@
+.data
+    titulo: .asciiz "-Calculo do Fatorial-\n"
+    op: .asciiz "Insira o valor:\n"
+    result: .asciiz "Resultado: "
+.text
+	
+	#leitura da string titulo
+	la $a0,titulo
+	li $v0, 4
+	syscall
+	
+	#leitura da string op
+	la $a0,op
+	li $v0, 4
+	syscall
+	
+	#leitura de um inteiro
+	li $v0, 5
+	syscall
+	
+	add $a0, $v0, $zero 		#adciona o valor lido em v0 para a0
+	
+	jal fat 			#jump and link to fat
+		
+	add $t0,$v0, $zero  		#adciona o valor lido em v0 para t0
+	
+	#leitura da string res
+	la $a0,result
+	li $v0, 4
+	syscall
+	
+	#leitura do valor de t0
+	add $a0,$t0, $zero 
+	li $v0,1
+	syscall
+	
+	j Exit			#pula para o label Exit
+	
+
+	fat:
+    		addi $sp, $sp, -8		#adciona dois espaços na pilha	
+    		sw $s0, 4($sp)			#armazena o valor de s0 na posição 1 da pilha
+    		sw $ra, 0($sp)			#armazena o endereço de retorno na posição 0 da pilha
+    	
+    		bne $a0,$zero,Else 		#compara se a0 != 0
+    		addi $v0,$zero,1 		#incrementa v0
+    		jr $ra 				#retorna para a função que o chamou
+
+	Else:
+    		add $s0, $a0, $zero		#s0 recebe a0
+    		addi $a0, $a0, -1 		# a0 - 1
+    		jal fat				#jump and link to fat
+    	
+    			
+    		multu $s0,$v0 			#multiplica s0 x v0
+   		mflo $v0 			#pega o resultado da multiplicação
+   	
+    		lw $s0, 4($sp)			#carrega o valor contido na posição 1 da pilha em s0
+    		lw $ra, 0($sp)			#carrega o valor contido na posição 1 da pilha em $ra
+    		addi $sp,$sp,8			#esvazia a pilha
+    		jr $ra				#retorna para a função que o chamou
+    	
+ 	Exit:	
+ 		#comando que finaliza o programa
+    		li $v0,10			
+		syscall

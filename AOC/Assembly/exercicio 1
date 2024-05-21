@@ -1,0 +1,62 @@
+.data
+	str1: .asciiz "digite 0 para preencher vetor em posiçoes impares ou diferente para par: "
+	vet1: .word 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+	espaço: .asciiz " |"
+
+.text	
+	#coloca a posiçao inicial do vetor em a1, s3 e s4
+	la $a1, vet1
+	la $s3, vet1		
+	la $s4, vet1
+	
+	addi $s3, $s3, 4	#aumenta uma posição em s3 para ele começar na posiçao impar
+	li $t3, 0     		#contador do loop
+
+	li $t1, 0		#posiçoes
+	li $s2, 13		#coloca 13 em s2
+	li $s6, 0		#contador do print 
+	Loop:
+	beq $t3, 3, Printar	#se t3 =  3 vai para label printar
+	
+	li $s0, 0		#contador do par
+	li $s1, 0		#contador impar	
+	
+	addi $t3, $t3, 1	#incrementa t3
+	la $a0, str1		
+	li $v0 ,4
+	syscall
+	
+	li $v0, 5
+	syscall
+	
+	move $t0, $v0			#poe o valor lido em t0
+	beq $t0, $zero, Impar		#ve se t0 é diferente de 0
+	Par:
+		beq $s0, 3, Loop	#se s0 = 3 vai para o loop
+		mul $t2, $t1, 4 	#multiplica a posição do vetor por 4
+		sw $t2,  0($s4)       #poe a posição i * 4
+		addi $s4, $s4, 8      #aumenta 2 posiçoes em s4
+		addi $s0, $s0, 1      #incrementa s1
+		addi $t1, $t1, 2      #aumenta 2 posiçao o t1 para mostrar em qual posiçao esta e fazer a mult
+		j Par		      #volta para label par
+	Impar:
+		beq $s1, 3, Loop	#se s1 = 3 vai para o loop
+		sw $s2,  0($s3)      	 #poe 13 em vet 1
+		addi $s3, $s3, 8	#aumenta 2 posiçoes em s3
+		addi $s1, $s1, 1	#incrementa s1
+		j Impar			#volta para label impar
+	
+	Printar:
+		beq $s6, 21, Exit	#se s6 = 21 vai para exit e fecha o codigo
+		lw $a0, 0($a1)		#poe a posiçao que esta em a1 em a0
+		li $v0, 1		
+		syscall
+		la $a0, espaço		#espaço para separar as posiçoes do vetor
+		li $v0, 4
+		syscall
+		addi $s6, $s6, 1	#incrementa s6
+		addi $a1, $a1, 4	#muda a posiçao de a1
+		j Printar		#volta para label printar
+	Exit:
+		li $v0, 10
+		syscall

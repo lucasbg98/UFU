@@ -1,0 +1,231 @@
+<html>
+
+<head>
+    <title>Substâncias</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" charset="UTF-8">
+
+    <link rel="icon" href="../assets/img/misture-icon.png">
+    <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/pages-css/substancia.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+
+    <script type="text/javascript" src="../assets/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../assets/js/fontawesome.js"></script>
+    <script type="text/javascript" src="../assets/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/38eec7dec7.js" crossorigin="anonymous"></script>
+    <script src="../assets/js/pages-scripts/substancia.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+    <script>
+        $.get("../controller/UsuarioController.php?getUserId=1", function(data, status) {
+            if (!data) {
+                //Não existe usuário logado
+                location.href = "../view/login.html?noUser=1";
+            }
+        });
+    </script>
+
+</head>
+
+<body>
+    <div id="customDialog" class="flex justify-content-center items-center">
+    </div>
+
+    <!-- Formulário -->
+    <div class="sidebarCommon">
+        <div class="sidebarHeader">
+            <div class="closeSidebar">
+                <img src="../assets/img/close-icon.svg" alt="close-sidebar" />
+            </div>
+            <p class="sidebarTitle">Cadastrar Nova Substância</p>
+        </div>
+        <div class="sidebarContent flex-grow-1">
+            <form id="substanciaForm" class="formClass">
+                <div class="flex-grow-1">
+                    <input type="hidden" id="hiddenSubstanciaId">
+                    <fieldset class="mb-16">
+                        <legend class="customLegend">Produto Técnico</legend>
+                        <div class="w-100">
+                            <div id="headerPrincipioAtivo" class="flex justify-space-between">
+                                <label for="principioAtivo">Princípio Ativo</label>
+                            </div>
+                            <input
+                                type="text"
+                                id="principioAtivo"
+                                class="customInput"
+                                placeholder="Ex: Glyphosate"
+                            />
+                        </div>
+                    </fieldset>
+                    <fieldset id="apelidosFieldset" class="mb-16">
+                        <legend class="customLegend">Apelidos</legend>
+                        <div id="novoApelido" class="flex w-100">
+                            <div class="mr-8 w-100">
+                                <div id="headerApelido" class="flex justify-space-between">
+                                    <label for="apelido">Novo Apelido</label>
+                                </div>
+                                <input 
+                                    type="search" 
+                                    id="apelido" 
+                                    class="customInput"
+                                    placeholder="Ex: Glifosato"
+                                />
+                            </div>
+                            <div class="d-flex items-end justify-end">
+                                <button 
+                                    type="button"
+                                    id="addApelido"
+                                    class="greenButton"
+                                    style="width: 50px;height: 35px;"
+                                >
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="apelidosList d-none">
+
+                        </div>
+                    </fieldset>
+                    <fieldset id="comerciaisFieldset" class="mb-16">
+                        <legend class="customLegend">Produtos Comerciais</legend>
+                        <div id="novoComercial" class="flex w-100">
+                            <div class="mr-8 w-100">
+                                <div id="headerComercial" class="flex justify-space-between">
+                                    <label for="comercial">Novo Produto Comercial</label>
+                                </div>
+                                <input 
+                                    type="search" 
+                                    id="comercial" 
+                                    class="customInput"
+                                    placeholder="Ex.: Roundup 360, Credit, ..."
+                                />
+                            </div>
+                            <div class="d-flex items-end justify-end">
+                                <button 
+                                    type="button"
+                                    id="addComercial"
+                                    class="greenButton"
+                                    style="width: 50px;height: 35px;"
+                                >
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="comerciaisList d-none">
+
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <legend class="customLegend">Classe</legend>
+                        <div class="appendClasses"></div>
+                    </fieldset>
+                </div>
+                <div id="buttonsDiv" class="flex justify-end items-end" style="margin-top: 20px; padding-bottom: 16px;">
+                    <div id="buttonsCadastrar">
+                        <button 
+                            type="button"
+                            id="limparForm"
+                            class="whiteButton buttonPadding"
+                            style="height: 40px;"
+                        >
+                            Limpar
+                        </button>
+                        <button
+                            type="submit"
+                            id="substanciaSubmit"
+                            class="greenButton buttonPadding"
+                            style="height: 40px; margin-left: 10px;"
+                        >
+                            Cadastrar
+                        </button>
+                    </div>
+                    <div id="buttonsEditAndRemove" class="d-none">
+                        <!-- <button 
+                            type="button"
+                            id="editarResultado"
+                            class="whiteButton buttonPadding"
+                            style="height: 40px; display: none;"
+                        >
+                            Editar
+                        </button> -->
+                        <button
+                            type="button"
+                            id="excluirSubstancia"
+                            class="redButton buttonPadding"
+                            style="height: 40px; margin-left: 10px;"
+                        >
+                            Excluir
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Topbar -->
+    <div class="topbar justify-space-between">
+        <div class="flex">
+            <div class="cursor-pointer" id="open-menu">
+                <i class="fas fa-bars" style="font-size: 21px;"></i>
+            </div>
+            <span id="user-name" style="margin-left: 8px;">
+            </span>
+        </div>
+        <!-- <div>
+            <img class="logoImg" src="../assets/img/refmixagri-logo.png"/>
+        </div> -->
+    </div>
+
+    <!-- Menu -->
+    <div class="menu">
+        <div class="d-flex" style="flex-direction: column; justify-content: space-between; flex: 1 1 auto;">
+            <div id="menuAppend" class="left-side">
+                <div class="menu-item menu-item-active">
+                    <a class="link" href="./substancia.html">
+                        <img src="../assets/img/substance.svg" />
+                        Substância
+                    </a>
+                </div>
+                <div class="menu-item">
+                    <a class="link" href="./resultado.html">
+                        <img src="../assets/img/ref.svg" />
+                        Resultado
+                    </a>
+                </div>
+            </div>
+            <div class="menu-item" style="margin-right: 10px;">
+                <a class="link" href="../controller/UsuarioController.php?deslogar=1">
+                    <img src="../assets/img/logout.svg" />
+                    Sair
+                </a>
+            </div>  
+        </div>
+    </div>
+
+    <!-- Conteúdo -->
+    <div class="container-fluid justify-center containerSize">
+        <div class="content">
+            <!-- Cabeçalho e Botão de Abrir o Modal -->
+            <div class="w-100 d-flex justify-space-between" style="margin-bottom: 7px;">
+                <h2 style="display: inline-block;"> Substâncias </h2>
+                
+                <button type="button" class="openSidebar greenButton buttonPadding">
+                    <i class="fas fa-plus" style="margin: 3px 7px 0 -7px;font-size: 18px;"></i>
+                    SUBSTÂNCIA
+                </button>
+            </div>
+
+            <!-- Carregamento de misturas -->
+            <div class="substanciasWrapper">
+            </div>
+        </div>
+        
+    </div>
+
+</body>
+
+</html>

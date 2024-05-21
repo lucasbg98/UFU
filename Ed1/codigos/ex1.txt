@@ -1,0 +1,76 @@
+1.1)	 Neste exercício será feita uma alteraçao entre as duas variaveis (i,j), ambas trocaram de valor.
+
+1.2)	Neste exercício será enviado um ponteiro de string para uma funçao que retorna outro 
+ponteiro que indica onde começa a segunda palavra da string.
+
+2)	A afirmativa "E" é falsa pois o endereco de memoria que o ponteiro esta indicando
+e nao necessariamente este valor seja igual a 10.
+
+3)	A afirmativa "D" é falsa pois o ponteiro "pti" esta apontando para a segunda posicao do vetor que contém
+o  valor 2.
+
+4)	 A afirmativa "A" é verdadeira pois na leitura utilizando a função scanf o segundo parametro é o endereço de
+memória da variavel que sera lida, e o ponteiro "pf" esta apontando para o endereço de memoria da variavel em questao.
+
+5)	#include <stdio.h>
+
+int temp(int *px);
+
+int main(){
+   int x,*px=NULL,*retorno=NULL;
+
+   printf("Digite um valor inteiro :");
+   scanf("%d",&x);
+
+   px=&x;
+
+   retorno=temp(px);
+
+   printf(" eh %d ",*retorno);
+
+return 0;
+}
+
+int temp(int *px){
+    printf("O dobro de %d",*px);
+    *px *= 2;
+    return px;
+}
+
+6)	#include <stdio.h>
+
+int main(){
+   int x,y,*px=NULL,*py=NULL,*aux=NULL;
+
+   printf("Digite o valor da primeira variavel :");
+   scanf("%d",&x);
+   printf("Digite o valor da segunda variavel :");
+   scanf("%d",&y);
+
+   px=&x;
+   py=&y;
+
+   printf("Variaveis antes da troca : x=%d  y=%d\n",*px,*py);
+
+   aux=px;
+   px=py;
+   py=aux;
+
+   printf("Variaveis depois da troca : x=%d  y=%d\n",*px,*py);
+
+
+return 0;
+}
+
+7.1)	O erro esta na linha "p = x;", falou o " * " antes do ponteiro.
+
+7.2)	os erros estao nas 3 ultimas linhas do codigo, para fazer um bubble sort com ponteiros nao é necessário utilizar
+três ponteiros, e sim 2 ponteiros e 1 variavel do mesmo tipo da seguinte forma :
+temp=*i;
+*i=*j;
+*j=temp;
+
+7.3)	o erro esta na comparaçao da função if, ele esta comparando o valor do inteiro que representa o endereço de
+memória, e nao a string em si.
+
+if (strcmp(a,b)<0)  printf ("%s vem antes de %s no dicionario", a, b);

@@ -1,0 +1,66 @@
+body{
+
+	background-color:black;
+	opacity:0.9;
+	font-family:"sans-serif";
+	background-image:url("../imgprodutos/carrinho.jpg");		
+
+}
+
+.caixa_interna{
+	
+	margin:120px 500px 0px;
+	padding-top:10px;
+	padding-bottom:20px;
+	text-align:center;
+	background-color:#F2F2F2;
+	border-radius:3px;
+	box-shadow:0px 0px 5px red;
+}
+
+
+
+.titulo{
+	margin-top:-10px;
+	padding-top:20px;
+	padding-bottom:20px;
+	background-color:red;
+	box-shadow:1px 1px 1px #606163;
+	
+}
+
+.titulo label{
+
+	color:white;
+	align-text:center;	
+}
+
+input{
+
+	margin-top:30px;
+	width:85%;
+	height:45px;
+		
+}
+
+#botao_entrar {
+
+	color:white;
+	background-color:red;
+	border:0px;
+}
+
+#botao_entrar:hover{
+
+	background-color:#ff323d;
+
+}
+
+#msgerror{
+
+	color:red;
+
+}
+
+
+

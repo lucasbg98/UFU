@@ -1,0 +1,81 @@
+.page-toggler {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 1rem;
+  flex-direction: row !important;
+}
+
+.page-toggler label {
+  cursor: pointer;
+}
+
+.page-option {
+  border: none;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  width: fit-content;
+  background-color: #cecece;
+}
+
+.card {
+  height: fit-content;
+}
+
+.input-wrapper {
+  margin-bottom: 4px;
+}
+
+.filter-wrapper .search-button-wrapper {
+  display: flex;
+  align-items: flex-end;
+  margin: 4px 0;
+}
+
+.filter-wrapper .search-button-wrapper button {
+  height: 36px;
+}
+
+.card-wrapper {
+  row-gap: 1rem;
+}
+
+.card-content {
+  max-height: 600px;
+}
+
+.card-content .titles {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-content button {
+  padding: 6px 16px;
+}
+
+.chart-content {
+  display: flex;
+  margin-top: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.chart-content canvas {
+  max-height: 500px;
+  max-width: 500px;
+}
+
+.table-content {
+  overflow-y: scroll;
+}
+
+.table-content thead th {
+  color: white;
+  background-color: #1b5e20;
+}
+
+@media (max-width: 576px) {
+  .input-wrapper {
+    width: 100%;
+  }
+}

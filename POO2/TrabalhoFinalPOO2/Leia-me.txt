@@ -1,0 +1,11 @@
+Leandro,
+ 
+Tentei realizar o trabalho usando o PostgreSQL, porém não sei por que ficava dando um erro estranho onde eu nao conseguia inserir os valores no banco de dados, ai baixei o MySQL pra testar com ele e funcionou, o programa consegue inserir, remover e listar os dados do banco através da interface grafica.
+
+As informações sobre o trabalho estão na aba sobre do jframe "Principal", testei aqui e estava funcionando corretamente.
+
+Como eu fiz pelo MySQL, eu coloquei o script do banco junto no arquivo comprimido.
+
+Algumas funcionalidades eu não consegui implementar por falta de tempo, eu perdi muito tempo tentando resolver o erro que estava dando quando eu estava tentando usar o PostgreSQL, acabou que nao tive muito tempo por conta disso.
+
+Att Lucas Bragança Gonçalves.

@@ -1,0 +1,136 @@
+<html>
+
+<head>
+    <title>MistuRe</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" charset="UTF-8">
+
+    <link rel="icon" href="../assets/img/misture-icon.png">
+    <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script type="text/javascript" src="../assets/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../assets/js/jquery.md5.js"></script>
+
+    <script type="text/javascript">
+        $.get("../controller/UsuarioController.php?destroySession=1")
+
+        var getUrlParameter = function getUrlParameter(sParam) {
+            var sPageURL = window.location.search.substring(1),
+                sURLVariables = sPageURL.split('&'),
+                sParameterName,
+                i;
+
+            for (i = 0; i < sURLVariables.length; i++) {
+                sParameterName = sURLVariables[i].split('=');
+
+                if (sParameterName[0] === sParam) {
+                    return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+                }
+            }
+        };
+
+        $(document).ready(function() {
+
+            if (getUrlParameter("noUser")) {
+                $('#div-avisos').slideDown('slow');
+                $("#div-avisos-mensagem").empty();
+                $("#div-avisos-mensagem").append("É necessário realizar o login para acessar esta página!")
+            }
+
+            $("#loginForm").submit(function(e) {
+
+                e.preventDefault();
+
+                $('#div-avisos').slideUp('slow');
+
+                var email = $("#email").val();
+                var pass = $.md5($("#pass").val());
+
+                $.ajax({
+                    type: "POST",
+                    url: "../controller/UsuarioController.php",
+                    data: {
+                        login: 1,
+                        user_email: email,
+                        user_password: pass
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.log({jqXHR, textStatus, errorThrown})
+                        if (textStatus === "timeout") {
+                            $('#div-avisos').slideDown('slow');
+                            $("#div-avisos-mensagem").empty();
+                            $("#div-avisos-mensagem").append("Servidor fora do ar!")
+                        }
+                    },
+                    success: function(data) {
+                        var response = JSON.parse(data);
+
+                        if (response.res == "loginOk") {
+                            window.location.href = "../view/substancia.html";
+                        } else {
+                            $('#div-avisos').slideDown('slow');
+                            $("#div-avisos-mensagem").empty();
+                            $("#div-avisos-mensagem").append(response.msg)
+                        }
+                    }
+                });
+            })
+        });
+    </script>
+</head>
+
+<body class="d-flex flex-column items-center justify-center" style="height: 100vh;">
+    <img 
+        src="../assets/img/misture-logo.png" 
+        width="400px"
+        height="100px"
+        style="margin-bottom: 10px;"
+    />
+
+    <form method="POST" id="loginForm" class="d-flex" style="flex-direction: column; justify-content: center;">
+        <div class="div-login">
+            <div class="row">
+                <div class="col-12">
+                    <h2>Login</h2>
+                </div>
+
+                <div class="col-12">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" name="user_email" id="email" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <div class="form-group">
+                        <label>Senha</label>
+                        <input type="password" name="user_password" id="pass" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="col-12 text-right">
+                    <a href="../index.html" style="color: #333; padding-right: 8px;">Voltar</a>
+                    <button type="submit" class="greenButton buttonPadding" style="height: 37px;">Entrar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Avisos -->
+        <div class="d-flex mt-2" style="justify-content: center;">
+            <div class="row">
+                <div class="container">
+                    <div class="collapse" id="div-avisos">
+                        <div id="div-avisos-mensagem" class="card card-body">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</form>
+</body>
+</html
